@@ -13,12 +13,12 @@ interface Props {
 const Counter: React.FC<Props> = ({ smartAccount, provider }) => {
   const [count, setCount] = useState<number>(0)
   const [counterContract, setCounterContract] = useState<any>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const counterAddress = import.meta.env.VITE_COUNTER_CONTRACT_ADDRESS;
 
   useEffect(() => {
-    setIsLoading(true)
+    // setIsLoading(true)
     getCount(false)
   },[])
 
