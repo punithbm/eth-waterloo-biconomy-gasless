@@ -22,7 +22,6 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      process: 'process',
       stream: 'stream-browserify',
       util: 'util',
     },
