@@ -26,3 +26,10 @@ export const toastFlashMessage = (message: string | React.ReactElement, type: st
     }, delay);
   }, 200);
 };
+
+export const getImage = (image: string) => {
+  if (!image) {
+    return;
+  }
+  return new URL(`../assets/images/${image}`, import.meta.url).href;
+};
