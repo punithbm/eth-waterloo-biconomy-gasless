@@ -1,0 +1,51 @@
+import { AxiosResponse } from 'axios';
+
+import { TResponse } from '../types';
+import axiosInstance from './httpInterceptor';
+export const globalGetService = <TParamType,>(url: string, params: TParamType, signal?: any, baseURL: string | undefined = axiosInstance.defaults.baseURL, headers?: any): Promise<TResponse> => {
+  return new Promise(function (resolve, reject) {
+    axiosInstance({
+      method: 'GET',
+      url: url,
+      params: params,
+      baseURL: baseURL,
+      signal: signal,
+      headers,
+    })
+      .then((response: AxiosResponse<TResponse>) => {
+        const _response: TResponse = {
+          data: baseURL !== axiosInstance.defaults.baseURL ? response.data : response.data.data,
+          statusCode: response.status,
+          message: response.statusText,
+        };
+        resolve(_response);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+export const globalApiService = <TDataType,>(url: string, data: TDataType, baseURL: string | undefined = axiosInstance.defaults.baseURL, method: string, signal?: any, headers?: any): Promise<TResponse> => {
+  return new Promise(function (resolve, reject) {
+    axiosInstance({
+      method: method,
+      url: url,
+      data: data,
+      baseURL: baseURL,
+      signal,
+      headers,
+    })
+      .then((response: AxiosResponse<TResponse>) => {
+        const _response: TResponse = {
+          data: baseURL !== axiosInstance.defaults.baseURL ? response.data : response.data.data,
+          statusCode: response.status,
+          message: response.statusText,
+        };
+        resolve(_response);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
