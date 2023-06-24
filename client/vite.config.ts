@@ -15,6 +15,7 @@ export default defineConfig({
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
+          process: true,
           buffer: true,
         }),
       ],
@@ -22,7 +23,6 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      process: 'process',
       stream: 'stream-browserify',
       util: 'util',
     },

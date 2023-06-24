@@ -31,12 +31,12 @@ export default function App() {
   async function login() {
     if (!sdkRef.current) {
       const socialLoginSDK = new SocialLogin();
-      const signature1 = await socialLoginSDK.whitelistUrl('http://127.0.0.1:5173/');
+      const signature1 = await socialLoginSDK.whitelistUrl('https://eth-waterloo-biconomy-gasless.vercel.app/');
       await socialLoginSDK.init({
         chainId: ethers.utils.hexValue(ChainId.POLYGON_MUMBAI).toString(),
         network: 'testnet',
         whitelistUrls: {
-          'http://127.0.0.1:5173/': signature1,
+          'https://eth-waterloo-biconomy-gasless.vercel.app/': signature1,
         },
       });
       sdkRef.current = socialLoginSDK;
