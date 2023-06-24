@@ -6,6 +6,7 @@ import { ChainId } from '@biconomy/core-types';
 import { ethers } from 'ethers';
 import SmartAccount from '@biconomy/smart-account';
 import Counter from './Components/Counter';
+import Login from './login/Login';
 
 export default function App() {
   const [smartAccount, setSmartAccount] = useState<SmartAccount | null>(null);
@@ -88,12 +89,13 @@ export default function App() {
       <h1>Biconomy SDK Auth + Gasless Transactions</h1>
       {!smartAccount && !loading && <button onClick={login}>Login</button>}
       {loading && <p>Loading account details...</p>}
+      <Login/>
       {!!smartAccount && (
         <div className="buttonWrapper">
           <h3>Smart account address:</h3>
           <p>{smartAccount.address}</p>
           <Counter smartAccount={smartAccount} provider={provider} />
-          <button onClick={logout}>Logout</button>
+          <button onClick={logout}>dsfkjhsdk</button>
         </div>
       )}
     </div>
