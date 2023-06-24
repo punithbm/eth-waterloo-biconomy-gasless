@@ -7,6 +7,7 @@ import { ethers } from 'ethers';
 import SmartAccount from '@biconomy/smart-account';
 import Counter from './Components/Counter';
 import Login from './login/Login';
+import Home from './home/Home';
 
 export default function App() {
   const [smartAccount, setSmartAccount] = useState<SmartAccount | null>(null);
@@ -85,17 +86,11 @@ export default function App() {
   };
 
   return (
-    <div>
-      <h1>Biconomy SDK Auth + Gasless Transactions</h1>
-      {!smartAccount && !loading && <button onClick={login}>Login</button>}
-      {loading && <p>Loading account details...</p>}
-      <Login/>
+    <div className="fullscreenView">
+      {!smartAccount && <Login login={login} loading={loading} />}
       {!!smartAccount && (
         <div className="buttonWrapper">
-          <h3>Smart account address:</h3>
-          <p>{smartAccount.address}</p>
-          <Counter smartAccount={smartAccount} provider={provider} />
-          <button onClick={logout}>dsfkjhsdk</button>
+          <Home address={smartAccount.address} logout={logout} smartAccount={smartAccount} provider={provider} />
         </div>
       )}
     </div>

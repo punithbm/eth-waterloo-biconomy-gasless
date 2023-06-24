@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 
 import { TResponse } from '../types';
 import axiosInstance from './httpInterceptor';
-export const globalGetService = <TParamType,>(url: string, params: TParamType, signal?: any, baseURL: string | undefined = axiosInstance.defaults.baseURL, headers?: any): Promise<TResponse> => {
+export const globalGetService = <TParamType>(url: string, params: TParamType, signal?: any, baseURL: string | undefined = axiosInstance.defaults.baseURL, headers?: any): Promise<TResponse> => {
   return new Promise(function (resolve, reject) {
     axiosInstance({
       method: 'GET',
@@ -26,19 +26,17 @@ export const globalGetService = <TParamType,>(url: string, params: TParamType, s
   });
 };
 
-export const globalApiService = <TDataType,>(url: string, data: TDataType, baseURL: string | undefined = axiosInstance.defaults.baseURL, method: string, signal?: any, headers?: any): Promise<TResponse> => {
+export const globalApiService = <TDataType>( data: TDataType, signal?: any, headers?: any): Promise<TResponse> => {
   return new Promise(function (resolve, reject) {
     axiosInstance({
-      method: method,
-      url: url,
+      method: "POST",
       data: data,
-      baseURL: baseURL,
       signal,
       headers,
     })
       .then((response: AxiosResponse<TResponse>) => {
         const _response: TResponse = {
-          data: baseURL !== axiosInstance.defaults.baseURL ? response.data : response.data.data,
+          data: response.data,
           statusCode: response.status,
           message: response.statusText,
         };
